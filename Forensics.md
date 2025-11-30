@@ -72,7 +72,7 @@ nite{nOw_yOu_knOw_abOut_PNG_chunk5}
 
 -  (https://www.google.com/url?sa=i&url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F54845745%2Fnot-able-to-read-ihdr-chunk-of-a-png-file&psig=AOvVaw2W4g_B_yYExUdP_7h1twAl&ust=1764576438481000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCPCX4M-1mZEDFQAAAAAdAAAAABAM)
 
-# 2. Nutrela Chunks
+# 3. RAR of the Abyss 
 
 >Description:
 
