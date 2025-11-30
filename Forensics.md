@@ -71,3 +71,39 @@ nite{nOw_yOu_knOw_abOut_PNG_chunk5}
 ## Resources:
 
 -  (https://www.google.com/url?sa=i&url=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F54845745%2Fnot-able-to-read-ihdr-chunk-of-a-png-file&psig=AOvVaw2W4g_B_yYExUdP_7h1twAl&ust=1764576438481000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCPCX4M-1mZEDFQAAAAAdAAAAABAM)
+
+# 2. Nutrela Chunks
+
+>Description:
+
+Two philosophers peer into the networked abyss and swap a secret. Use the secret to decrypt the Abyss’ RAwR and pull your flag from the void
+
+## Solution:
+
+- I viewed the packects of capture file in wireshark and in the PSH , ACK flag in TCP type protocols and found a conversation and found a ciphertext and the key . then i used cyclic XOR decryption to get the flag.
+
+  The XOR ciphertext:
+
+  <img width="1910" height="964" alt="Screenshot 2025-11-30 151355" src="https://github.com/user-attachments/assets/77cb938f-c781-41b6-9875-aa306acdb46b" />
+
+  The key for the ciphertext:
+  <img width="1904" height="862" alt="image" src="https://github.com/user-attachments/assets/43fa7e29-427e-4f95-b637-7d34113b9744" />
+
+
+## Flag:
+
+```
+flag{1_533_tH3_voID_4nd_th3_vO1D_5335_m3_b4ck_0r_wA5_it_4_c4Mu5_qUot3_oR_w45_it_7h3_d3f1n171On_0f_7h3_R4Rp_prOtOc0L}
+```
+
+## Concepts learnt:
+
+- I learned how data can viewed in the tcp packets with PSH and ACK flags.
+
+## Notes:
+
+- i kept trying to find anything useful within each packets.
+  
+## Resources:
+
+-  ()
