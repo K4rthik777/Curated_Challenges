@@ -106,3 +106,40 @@ nite{thus_sp0k3_th3_n3tw0rk_f0r3ns1cs_4n4lyst}
   
 ## Resources:
 -(https://stackoverflow.com/questions/40743773/how-to-extract-raw-data-from-tcp-packets-using-wireshark)
+
+# 4. NineTails
+
+>Description:
+
+>Looks like I got a little too clever and hid the flag as a password in Firefox, tucked away like one of NineTails’ many tails. Recover the "logins" and the "key4" and let it guide you to the flag.
+
+Hint:
+I named my Ninetails "j4gjesg4", quite a peculiar name isn't it? 
+
+## Solution:
+
+- I extracted given .rar file to get an .ad1 file and then i extracted this ad1 file using ftk imager. In this i searched for all j4gjesg4 profiles in firefox folders. I found the logins.json and keys.db files. Then i used the firefox decrypt python script tool to get the saved passwords.So i joined the passwords to get the flag.
+
+The ftk imager showing the logins.json and key4.db:
+<img width="1354" height="656" alt="image" src="https://github.com/user-attachments/assets/aec0bc6e-257a-442b-a5da-5a15714e097c" />
+
+The python script usage:
+
+<img width="1109" height="567" alt="image" src="https://github.com/user-attachments/assets/d1361b9f-0269-4315-b3e0-d63faf12ee7f" />
+
+## Flag:
+
+```
+GCTF{m0zarella_f1ref0x_p4ssw0rd}
+```
+
+## Concepts learnt:
+
+- I learned how to view ad1 files and how to decrypt the saved passwords in the logins.json using python decryption script.
+
+## Notes:
+
+- i kept messing up the extracting of ad1 file using wrong software and used some other tool for decrypting the passwords but it didn't work.
+  
+## Resources:
+-()
