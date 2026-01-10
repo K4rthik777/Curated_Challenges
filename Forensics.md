@@ -157,20 +157,42 @@ What we know: just before the crash, a black command window flickered across the
 Hint:Learn up on volatility 2 and its various plugins and what they are used for.
  
 ## Solution:
-Initially i unziped the 7zip file to get a .raw file and then i tried access it through volattility tool in python and tried to follow the clues given in the description.
-For the stage 1, i access the processes list and tried to find any process that poped up as mentioned in the description using this command ```bash volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 pslist```. Then i tried checking the consoles this time using this command ```bash volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 consoles ``` and found a encoded text in base64 and decoded it to get the first flag.
-For the stage
+Initially i unziped the 7zip file to get a .raw file and then i tried access it through volatility tool in python and tried to follow the clues given in the description.By using the volatility tool i got the info about this .raw with this command ```volatility -f MemoryDump_Lab1.raw imageinfo``` and it' s version seems to be Win7SP1x64 
+For the stage 1, i accessed the processes list and tried to find any process that poped up as mentioned in the description using this command ```bash volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 pslist```. Then i tried checking the consoles this time using this command ```bash volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 consoles ``` and found a encoded text in base64 and decoded it to get the first flag.
+For the stage 2, i extracted the mspaint memory as .dmp using the command ```bash volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 memdump -p 2424 -D ./ ``` and then i tried viewing this file by changing its extension .data and opening in gimp tool . There  i set the offset to 500 and tried different combinations for width and height to get a readable image and at height = 1230 and width = 2234 i got an inverted mspaint image with flag written in it.
+
+<img width="903" height="574" alt="Screenshot from 2026-01-09 14-22-57" src="https://github.com/user-attachments/assets/65cb308f-f657-46a0-85ee-b02836e48ae0" />
+
+For the stage 3 ,  i extracted the winrar memory into .dmp file ```volatility -f ../MemoryDump_Lab1.raw --profile=Win7SP1x64 memdump -p $PID -D winrar_memory/ ``` and then then i scanned the memory dump for archives and transfered their names to a .txt file.
+```
+volatility -f ../MemoryDump_Lab1.raw --profile=Win7SP1x64 filescan > all_files.txt
+grep -i "\.rar\|\.zip\|\.7z\|\.tar\|\.gz\|\.cab" all_files.txt | head -20 > archive_files.txt
+cat archive_files.txt
+```
+Then i used this txt file to extract that file and got a .dat file. But upon viewing the bytes of the file in hexeditor it was clear that this was rar file. So i changed the extension to .rar and tried extracting this file and it asked for the NTLM hash of Alissa Simpson user's password so i tried the each hash and it opened for the second hash to give the flag3.png
+```
+volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 hashdump > all_hashes.txt
+grep -i "alissa\|simpson" all_hashes.txt
+```
+
+<img width="500" height="500" alt="flag3" src="https://github.com/user-attachments/assets/1da542e8-9922-4f15-9cd1-1ea2ce323225" />
+
 
 ## Flag:
 Stage1 - ```flag{th1s_1s_th3_1st_st4g3!}```
 
+Stage2 - ```flag{Good_Boy_good_girl}```
+
+Stage3 - ```w3ll_3rd_stage_was_easy```
+
 ## Concepts learnt:
 
-- I learned how to view ad1 files and how to decrypt the saved passwords in the logins.json using python decryption script.
+- I learned how volatility can be used to analyse, scan and extract memory dumps(.raw,.dmp) and allows to view and investage through all processes and even individual application activity can be observed.
 
 ## Notes:
 
-- i kept messing up the extracting of ad1 file using wrong software and used some other tool for decrypting the passwords but it didn't work.
+- i kept trying to using the entire pc memory dump in the gimp but it was supposed to be the .dmp dile of the mspaint that had to opened instead. Also i kept going after wrong .rar archives which were corrupted and couldn't open.
   
 ## Resources:
--()
+-(https://github.com/volatilityfoundation/volatility)
+
